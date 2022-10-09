@@ -54,16 +54,30 @@ save(@Body(new CustomBodyDtoToCustomBody()) myCustomBody: MyCustomBody) {
 ```
 Then, we're working with some real object, without embedding useless elements like the validators, used only when the controller is receiving data.
 
+#### Naming received data
+
+Instead of naming the type of data SpaceShipDTO of something like this, we clearly name it SaveSpaceShipRequest. The name says it all, it's really clear what the data are for, that's nice.
+
 #### Using the NestJS CLI
 
 I've already used the NestJS CLI to bootstrap a code base, to generate some modules/controllers/services, but with pipes too, I wonder if there's other resources this tool can generate to help me speed up on some code skeleton. 
 
+### Part Two - Testing the service
+
+#### The TDD part
+
+I'm a bit confused about this article. The TDD mindset is supposed to be a real part of this approch to create an API. However, it is frequent we get the update of both code and test in the same code block.
+TDD has always been kind of extreme and a bit obscure for people not practicing it, and this way to rush things can be disorienting. I had to focus on what the next step was, writing my test then implementing the minimum changes required and, finally, checking the article to compare our solutions.
+
+#### Layers/Methods responsilities
+
+I like the way of thinking about what is the responsibility of the controller (receiving/sending data), the service (not validating data because it is done elsewhere, so we're just checking we're giving the repository and the controller the good object).
+
 ### Next steps
 
+- Reading Part III, about unit testing the repository.
 - Building one or two more APIs this way to get some automation with this way of creating APIs. (won't be pushed)
 - Building a bigger API to ensure the robustness of the conception. (may be pushed)
-- Read documentation about NestJS CLI features.
-- Reading Part II, about unit testing the service.
 
 ## Technical part
 

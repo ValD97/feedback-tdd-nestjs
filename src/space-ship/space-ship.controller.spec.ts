@@ -28,11 +28,18 @@ describe('SpaceShipController', () => {
       spaceShipId: SpaceShipId.from('abc-123-ship'),
       spaceShipName: 'Apollo',
       spaceShipNumber: 123,
-      isFasterThanLight: true
+      isFasterThanLight: true,
     };
 
-    controller.save(spaceShip);
+    const returnedSpaceShip: SpaceShip = {
+      spaceShipName: 'Apollo',
+    } as SpaceShip;
 
-    expect(service.save).toHaveBeenCalled();
-  })
+    service.save = jest.fn().mockResolvedValue(returnedSpaceShip);
+
+    return controller.save(spaceShip).then((sp) => {
+      expect(service.save).toHaveBeenCalledWith(spaceShip);
+      expect(sp).toBe(returnedSpaceShip);
+    });
+  });
 });
